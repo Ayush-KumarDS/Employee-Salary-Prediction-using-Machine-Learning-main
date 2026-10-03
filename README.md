@@ -1,21 +1,23 @@
-4. The system executes vectorized inference and appends a `PredictedClass` column.
-5. Click **"⬇️ Download Predictions CSV"** to save your results.
+# 💼 Employee Salary Prediction using Machine Learning
+[![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io/)
+[![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)](https://pandas.pydata.org/)
+[![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)](https://numpy.org/)
+An end-to-end Machine Learning web application that predicts whether an individual earns **more than \$50,000 annually (`>50K`)** or **\$50,000 or less (`<=50K`)** based on census demographic and employment features. Built on the renowned **UCI Adult Census Income dataset**, packaged with a **scikit-learn Pipeline**, and deployed via an interactive **Streamlit** dashboard with real-time inference and bulk CSV batch processing.
 ---
-## 💡 Engineering Highlights & Best Practices
-1. **Zero Data Leakage**: Transformations (`StandardScaler`, `OneHotEncoder`) are fitted strictly within cross-validation folds and training partitions via `sklearn.pipeline.Pipeline`.
-2. **Encapsulated Artifact**: The saved `model.pkl` is a complete composite pipeline. The web application feeds raw DataFrames directly into `model.predict(input_df)` without needing manual scaling or one-hot encoding code inside the web server.
-3. **Resilient Categorical Encoding**: Categorical encoders use `handle_unknown='ignore'`, preventing runtime crashes when novel or rare categories are introduced in user input.
-4. **Vectorized Batch Processing**: Uses Pandas vectorized operations for batch uploads, allowing processing of thousands of records in seconds.
+## 📌 Table of Contents
+- [Project Overview](#-project-overview)
+- [Key Features](#-key-features)
+- [System Architecture & ML Pipeline](#-system-architecture--ml-pipeline)
+- [Model Evaluation & Benchmarking](#-model-evaluation--benchmarking)
+- [Dataset & Feature Dictionary](#-dataset--feature-dictionary)
+- [Repository Structure](#-repository-structure)
+- [Quickstart & Installation](#-quickstart--installation)
+- [How to Use the Web App](#-how-to-use-the-web-app)
+- [Engineering Highlights & Best Practices](#-engineering-highlights--best-practices)
+- [Future Roadmap](#-future-roadmap)
+- [License](#-license)
 ---
-## 🔮 Future Roadmap
-- [ ] **Class Imbalance Optimization**: Implement SMOTE (Synthetic Minority Over-sampling Technique) or cost-sensitive learning to boost recall on the `>50K` minority class.
-- [ ] **Hyperparameter Optimization**: Conduct Bayesian optimization with Optuna to tune Gradient Boosting estimators and tree depths.
-- [ ] **Explainable AI (XAI)**: Integrate **SHAP** (SHapley Additive exPlanations) into the Streamlit dashboard to explain individual feature contributions for each prediction.
-- [ ] **Containerization & Cloud Deployment**: Add `Dockerfile` and deploy the service on cloud platforms (e.g., Streamlit Community Cloud, Render, or AWS ECS).
----
-## 📜 License
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
----
-## 🤝 Acknowledgements
-* [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/adult) for providing the Adult Census Income dataset.
-* [scikit-learn](https://scikit-learn.org/) and [Streamlit](https://streamlit.io/) open-source communities.
+## 📖 Project Overview
+Determining employee compensation tiers is critical for HR workforce analytics, market salary calibration, and demographic economic research. 
