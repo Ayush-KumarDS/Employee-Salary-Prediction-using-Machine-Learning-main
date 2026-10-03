@@ -1,80 +1,21 @@
-# 💼 Employee Salary Prediction ML App
-
-![Streamlit](https://img.shields.io/badge/Streamlit-App-brightgreen) ![Python](https://img.shields.io/badge/Python-3.11-blue) ![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-orange)
-
+4. The system executes vectorized inference and appends a `PredictedClass` column.
+5. Click **"⬇️ Download Predictions CSV"** to save your results.
 ---
-
-## 📌 Project Overview
-
-This project predicts whether an employee earns **≤50K or >50K** using demographic and work-related features from the **UCI Adult dataset**, deployed as an interactive web app using **Streamlit**.
-
+## 💡 Engineering Highlights & Best Practices
+1. **Zero Data Leakage**: Transformations (`StandardScaler`, `OneHotEncoder`) are fitted strictly within cross-validation folds and training partitions via `sklearn.pipeline.Pipeline`.
+2. **Encapsulated Artifact**: The saved `model.pkl` is a complete composite pipeline. The web application feeds raw DataFrames directly into `model.predict(input_df)` without needing manual scaling or one-hot encoding code inside the web server.
+3. **Resilient Categorical Encoding**: Categorical encoders use `handle_unknown='ignore'`, preventing runtime crashes when novel or rare categories are introduced in user input.
+4. **Vectorized Batch Processing**: Uses Pandas vectorized operations for batch uploads, allowing processing of thousands of records in seconds.
 ---
-
-## 🚀 Features
-
-- Data cleaning and preprocessing pipeline
-- Trained multiple models:
-  - Logistic Regression
-  - Random Forest
-  - Gradient Boosting (**Best: ~86% accuracy**)
-  - Support Vector Machine (SVM)
-  - K-Nearest Neighbors (KNN)
-- Pipeline integration with scikit-learn
-- Streamlit app with:
-  - Sidebar input for employee features
-  - Batch prediction via CSV upload
-  - Professional background theme and clean UI
-
+## 🔮 Future Roadmap
+- [ ] **Class Imbalance Optimization**: Implement SMOTE (Synthetic Minority Over-sampling Technique) or cost-sensitive learning to boost recall on the `>50K` minority class.
+- [ ] **Hyperparameter Optimization**: Conduct Bayesian optimization with Optuna to tune Gradient Boosting estimators and tree depths.
+- [ ] **Explainable AI (XAI)**: Integrate **SHAP** (SHapley Additive exPlanations) into the Streamlit dashboard to explain individual feature contributions for each prediction.
+- [ ] **Containerization & Cloud Deployment**: Add `Dockerfile` and deploy the service on cloud platforms (e.g., Streamlit Community Cloud, Render, or AWS ECS).
 ---
-
-## 🛠️ Technologies Used
-
-- **Languages & Libraries:** Python, pandas, numpy, seaborn, matplotlib
-- **Machine Learning:** scikit-learn (Pipeline, ColumnTransformer, models)
-- **Deployment:** Streamlit
-- **Serialization:** joblib
-
+## 📜 License
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 ---
-
-## 📁 Dataset
-
-- **Source:** [UCI Machine Learning Repository - Adult Dataset](https://archive.ics.uci.edu/ml/datasets/adult)
-- **File:** `adult.csv`
-- **Description:** Contains demographic and employment data for salary classification tasks.
-
----
-
-## 🧠 Key Learnings
-
-✔️ End-to-end ML project workflow  
-✔️ Data preprocessing and handling missing values  
-✔️ Feature engineering and encoding  
-✔️ Model training, evaluation, and selection  
-✔️ Deploying ML models as web apps using Streamlit
-
----
-
-## 📝 Algorithm
-
-1. Import libraries and load dataset
-2. Replace missing values and drop duplicates
-3. Remove outliers for age and educational-num
-4. Encode categorical columns with LabelEncoder
-5. Define feature set `x` and target `y`
-6. Split data into training and test sets
-7. Build a pipeline:
-   - Numeric: StandardScaler
-   - Categorical: OneHotEncoder
-8. Train multiple models and evaluate their performance
-9. Select and save the best model using joblib
-10. Build and deploy Streamlit app with interactive UI for predictions
-
----
-
-## 💻 How to Run Locally
-
-1. **Clone this repo**
-
-```bash
-git clone https://github.com/yourusername/employee-salary-prediction.git
-cd employee-salary-prediction
+## 🤝 Acknowledgements
+* [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/adult) for providing the Adult Census Income dataset.
+* [scikit-learn](https://scikit-learn.org/) and [Streamlit](https://streamlit.io/) open-source communities.
